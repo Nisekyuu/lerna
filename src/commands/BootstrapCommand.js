@@ -27,14 +27,16 @@ export default class BootstrapCommand extends Command {
   linkDependencies(callback) {
     this.progressBar.init(this.packages.length);
     this.logger.info("Linking all dependencies");
-    const to = this.flags.to;
+    const packages = this.flags.packages;
     const ignore = this.flags.ignore || this.repository.bootstrapConfig.ignore;
-
+    let todoPackages = {};
+    console.log(this.flags)
     // Get a filtered list of packages that will be bootstrapped.
-    if (to) {
-      const todoPackages = PackageUtilities.filterpackages(this.packages, to, false);
+    if (packages) {
+      console.log('eggs')
+      todoPackages = PackageUtilities.filterPackages(this.packages, packages);
     } else {
-      const todoPackages = PackageUtilities.filterPackages(this.packages, ignore, true);
+      todoPackages = PackageUtilities.filterPackages(this.packages, ignore, true);
     }
 
     // Get a trimmed down graph that includes only those packages.
