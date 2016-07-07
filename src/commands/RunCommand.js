@@ -7,7 +7,6 @@ export default class RunCommand extends Command {
   initialize(callback) {
     this.script = this.input[0];
     this.args = this.input.slice(1);
-    console.log(this.args)
     if (!this.script) {
       callback(new Error("You must specify which npm script to run."));
       return;
